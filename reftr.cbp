@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="reftr" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/reftr" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/reftr" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-DFOR_OS_LINUX" />
+		</Compiler>
+		<Unit filename="arithm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="arithm.h" />
+		<Unit filename="bif.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bif_lex.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bif_lex.h" />
+		<Unit filename="cdecl.h" />
+		<Unit filename="cfunc.h" />
+		<Unit filename="dcom.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ddecl.h" />
+		<Unit filename="decl.h" />
+		<Unit filename="dimpl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="dmacro.h" />
+		<Unit filename="dtrace.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="fileio.h" />
+		<Unit filename="freeze.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="freeze.h" />
+		<Unit filename="func1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="func2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ifunc.h" />
+		<Unit filename="junk.h" />
+		<Unit filename="ldecl.h" />
+		<Unit filename="lex.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="load.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="macros.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="macros.h" />
+		<Unit filename="memory.h" />
+		<Unit filename="rasl.h" />
+		<Unit filename="rcaux.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rcleft.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="refaux.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="refio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rti.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sysfun.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tfunc.h" />
+		<Unit filename="trace.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="version.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="version.h" />
+		<Unit filename="xml2ref.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="xmlparse.h" />
+		<Unit filename="xxx.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>
