@@ -125,8 +125,8 @@ void ri_information (long l_time, int code) {
                 };
   }
   if (strchr(flags, 'a')) {
-    fprintf(ferr, VERSION, "System", _refal_build_version);
-    if (fp_debugInfo != NULL) fprintf (fp_debugInfo, VERSION, "System", _refal_build_version);
+    fprintf(ferr, VERSION(System) COPYRIGHT);
+    if (fp_debugInfo != NULL) fprintf (fp_debugInfo, VERSION(System) COPYRIGHT);
   }
   if (code > 0) {
     char * cp_w = actfun - 1;

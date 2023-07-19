@@ -69,9 +69,6 @@
 		<Unit filename="sem.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="version.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="version.h" />
 		<Unit filename="vyvod.c">
 			<Option compilerVar="CC" />

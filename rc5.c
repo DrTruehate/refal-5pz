@@ -22,8 +22,7 @@ main (int argc, char * argv []) {
   char fname [FILENAME_MAX];
 
   /* print the version and copyright information. */
-  printf (VERSION, "Compiler", _refal_build_version);
-  printf ("Copyright: Refal Systems Inc.\n");
+  printf(VERSION(Compiler) COPYRIGHT);
 
   rc_initcom (argc, argv); /* see pass2.c */
   i = rc_getbeginfile (argv);

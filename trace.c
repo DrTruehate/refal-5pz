@@ -47,8 +47,7 @@ int main (int argc, char * argv []) {
   //int i;
 
   /* print the version and copyright information. */
-  printf (VERSION, "Tracer", _refal_build_version);
-  printf ("Copyright: Refal Systems Inc.\n");
+  printf (VERSION(Tracer) COPYRIGHT);
 
         ri_options(argc,argv,1);
 

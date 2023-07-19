@@ -81,9 +81,6 @@
 		<Unit filename="sysfun.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="version.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="version.h" />
 		<Unit filename="xml2ref.c">
 			<Option compilerVar="CC" />
