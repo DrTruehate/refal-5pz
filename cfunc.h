@@ -7,14 +7,14 @@ int ri_inquire (char *, char *, int);
 int rc_ungchar (char);
 int rc_gchar (void);
   /* debugging in main.c */
-int print_expr (struct element *);
-int print_tree (struct node *);
-char *rasl_code (int);
-int print_translation (struct rasl_instruction *);
-int print_rasl_inst (struct rasl_instruction *);
-int print_var_table (unsigned char *);
-int prftab (struct functab *);
-int print_holes (struct HOLES *, struct element *);
+void print_expr(struct element *);
+void print_tree(struct node *);
+char* rasl_code(int);
+void print_translation(struct rasl_instruction *);
+void print_rasl_inst(struct rasl_instruction *);
+void print_var_table(unsigned char *);
+void prftab(struct functab *);
+void print_holes(struct HOLES *, struct element *);
 
 /* lex.c# -- lexical scan functions. */
 int rc_gettoken (void);
