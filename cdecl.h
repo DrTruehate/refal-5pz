@@ -276,4 +276,7 @@ EXTERNAL FILE *fdtmpw;  /* .TMP write file */
 EXTERNAL FILE *fdtmpr;  /* .TMP read file */
 
 
-#include "junk.h"
+#define MDEBUG_HOLES 0
+
+int debug_print_holes(struct HOLES *);
+int debug_print_expr(struct element *);

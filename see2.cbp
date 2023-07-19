@@ -33,7 +33,6 @@
 		</Compiler>
 		<Unit filename="bif_lex.h" />
 		<Unit filename="cdecl.h" />
-		<Unit filename="junk.h" />
 		<Unit filename="rasl.h" />
 		<Unit filename="see2.c">
 			<Option compilerVar="CC" />

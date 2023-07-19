@@ -39,7 +39,6 @@
 		<Unit filename="bif_lex.h" />
 		<Unit filename="cdecl.h" />
 		<Unit filename="cfunc.h" />
-		<Unit filename="junk.h" />
 		<Unit filename="lex.c">
 			<Option compilerVar="CC" />
 		</Unit>
