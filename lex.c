@@ -587,7 +587,7 @@ rc_serror (int code, char * str) {
   case 205:
 /* Nemytykh 09.08.2002 */
     sprintf (ca_err + strlen (ca_err),
-       "205. Number greater than 2^%d-1=%lu ", sizeof(int)*8,MAX_UNSIGNED_INT);
+       "205. Number greater than 2^%ld-1=%lu ", sizeof(int)*8,MAX_UNSIGNED_INT);
     break;
   default:
     /* Was. Shura. 27.05.99
@@ -630,7 +630,7 @@ int rc_swarn (code)
       break;
     case  5:
 /* Nemytykh 08.08.2002    fprintf (fdlis," 5. Number greater than %ld (shorten)",MAXINT);*/
-      fprintf (fdlis," 5. Number greater than 2^%d-1=%lu (shorten)", sizeof(int)*8,MAX_UNSIGNED_INT);
+      fprintf (fdlis," 5. Number greater than 2^%ld-1=%lu (shorten)", sizeof(int)*8,MAX_UNSIGNED_INT);
       break;
     case  6:
       fprintf (fdlis," 6. The same index for 2 diff variables ");

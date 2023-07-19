@@ -341,7 +341,7 @@ int ri_dn (LINK *q1, LINK *q2) {
 
 /* Ev-met = rf_setfrz */
 int rf_setfrz (char ** muaddr) {
-  LINK * lnkp_bWork;
+  //LINK * lnkp_bWork;
 
   cl;
   /*rdy (0); Shura */
@@ -357,7 +357,7 @@ int rf_setfrz (char ** muaddr) {
   /* call ri_up for the insides. */
   if (tel [3] != NULL) {
     ri_up (tel [3], tel [4], muaddr);
-    lnkp_bWork = b;
+    //lnkp_bWork = b;
     rdy (0);
     bl;
     if (tel [3] == NULL) tel [4] = b;

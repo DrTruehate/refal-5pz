@@ -12,7 +12,7 @@ int main(argc, argv)
   int argc;
   char *argv[];
   {
-  char *s, filename [40];
+  //char *s, filename [40];
   FILE *fp_out;
 
   if (argc < 2) {
@@ -94,7 +94,7 @@ int rc_rsee2 (fp_out)
       lname[j] = c;
       if (c == 0) break;
     }
-    fprintf(fp_out, "%d: %s\n",cs-1-i,lname);
+    fprintf(fp_out, "%ld: %s\n",cs-1-i,lname);
   }
   fprintf(fp_out, "\n");
   fprintf(fp_out, "The Local table.\n");
@@ -215,7 +215,7 @@ int rc_rsee2 (fp_out)
     case 45: /* TPLE */
     case 46: /* TPLS */
       read_long (k);
-      fprintf (fp_out, "TE pointer %d", k);
+      fprintf (fp_out, "TE pointer %ld", k);
       z += 5;
       break;
 
@@ -223,7 +223,7 @@ int rc_rsee2 (fp_out)
       /* This RASL operator require two operands of sizeof(long). */
       read_long(k1);
       read_long(k);
-      fprintf(fp_out, " TE pointers %d %d",k1,k);
+      fprintf(fp_out, " TE pointers %ld %ld",k1,k);
       z += 1+2*sizeof(long);
       break;
 
@@ -272,7 +272,7 @@ int rc_rsee2 (fp_out)
       break;
 
     default:
-      fprintf(fp_out, ": Strange Opcode = %ld",opcode);
+      fprintf(fp_out, ": Strange Opcode = %d",opcode);
       err ++;
       break;
     }

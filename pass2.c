@@ -129,8 +129,8 @@ int rc_getnextfile (int i, char * argv []) {
 }
 
 int rc_initcom (int argc, char * argv []) {
-  /*char filename [FILENAME_MAX], *s, *dot, outfile [FILENAME_MAX];*/
-  int i;
+  /*char filename [FILENAME_MAX], *s, *dot, outfile [FILENAME_MAX];
+  int i;*/
 
   /* Initialize the refal compiler. July 28, 1985 D.T. */
   /* open the input (.ref) output (.lis) and result (.tmp) files. */
@@ -149,7 +149,7 @@ int rc_initcom (int argc, char * argv []) {
   c_flags [0] = '\0';
   for (i = 1; i < argc; i ++) {
     if (argv [i][0] == '-') strncat (c_flags, &(argv [i][1]), 30);
-    /*
+    / *
     else if (filename [0] == '\0') strcpy (filename, argv[i]);
     else if (outfile [0] == '\0') strcpy (outfile, argv[i]);
     *+/

@@ -13,13 +13,13 @@ int main(argc, argv)
   int argc;
   char *argv[];
   {
-  char *s, filename [40];
 
   if (argc < 2) {
     printf("Usage: SEE1 <filename>\n");
     exit(1);
     };
 # ifdef IBM370
+  char *s, filename [40];
   strcpy (filename, argv [1]);
   s = strchr (filename, '.');
   if (s) *s = ' ';
@@ -83,7 +83,7 @@ int rc_rsee1 ()
   {
   unsigned char opcode, c, d;
   char lname[MAXWS];
-  int i, j;
+  int i/*, j*/;
   long k, n, z;
 
   z = 0L;

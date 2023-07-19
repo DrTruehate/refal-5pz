@@ -44,7 +44,7 @@ static char def_nobreak [10/*MAXWS*/ + 1];
 
 /* main entry to Refal tracer. */
 int main (int argc, char * argv []) {
-  int i;
+  //int i;
 
   /* print the version and copyright information. */
   printf (VERSION, "Tracer", _refal_build_version);

@@ -45,7 +45,7 @@ long rc_getcsn(char * compsym) {
 
 int rc_vyvod (struct rasl_instruction *translation [], int t) {
   /* VYVOD: Output the Rasl operators in the format of the host machine.  DT June 19 1986. */
-  char funname[MAXWS], lname[MAXWS];
+  char funname[MAXWS - sizeof("$")], lname[MAXWS];
   struct rasl_instruction *v;
   int /*i,*/ k, s;
   int opcode;

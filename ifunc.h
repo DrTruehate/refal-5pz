@@ -56,7 +56,7 @@ int ri_hash (char *);
 int ri_print_error_code(FILE *, int);
 int ri_common_stack (void);
 int ri_init_stop(void);
-int ri_options(int, char **, char);
+void ri_options(int, char **, char);
 
 /* bif.c -- list of standard fuinctions. */
 int ri_bif (long, char *);

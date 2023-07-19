@@ -183,7 +183,7 @@ int ri_addsym (LINK * ptr, FILE *fd) {
     if (isIdentifier (ptr -> pair.f)) {
       sprintf (tbuf, "%s ", ptr -> pair.f);
     } else {
-      char ca_w [MAXWS + 3];
+      char ca_w [MAXWS/* + 3*/];
 
       strcpy (ca_w, ptr -> pair.f);
       correctEscapeSymbols (ca_w);
@@ -555,7 +555,7 @@ int ri_put (FILE * fd) {
       if (i_chars) {
         i_chars = 0;
         putc ('\'', fd);
-/* Nemytykh 18.02.2004
+/ * Nemytykh 18.02.2004
         if (fd == stderr || fd == stdout) {
           if (i ++ >= LINELEN) {
             putc ('\n', fd);

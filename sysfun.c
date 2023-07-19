@@ -10,7 +10,7 @@
 # define MAXINT 2147483647
   /*  maximum unsigned integer  */
 # define MAX_INT (2 << (8*(sizeof int) - 1) -1)
-# define MAX_UNSIGNED_INT (MAXINT + MAXINT + 1)
+# define MAX_UNSIGNED_INT (unsigned int)(-1)
 
 /* From refio.c */
 extern void correctEscapeSymbols (char *);
@@ -365,7 +365,7 @@ int putexp (FILE * fp, unsigned long l_limit) {
       }
       if (isIdentifier (b1 -> pair.f) == 0) {
         /* no identifier */
-        char ca_w [2 * MAXWS + 1];
+        char ca_w [2 * MAXWS - 1];
 
         strcpy (ca_w, b1 -> pair.f);
         correctEscapeSymbols (ca_w);
@@ -393,7 +393,7 @@ int putexp (FILE * fp, unsigned long l_limit) {
         }
         state_char = 0;
       }
-      sprintf (ca_buf, "%u ", b1 -> pair.n);
+      sprintf (ca_buf, "%lu ", b1 -> pair.n);
       for (cp = ca_buf, i_len = strlen (cp); l + i_len >= l_limit; cp += l_limit - l, i_len -= (l_limit - l), l = 0) {
         char ca_w [MAXWS + 1];
 

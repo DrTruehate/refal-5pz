@@ -344,10 +344,10 @@ int ri_print_error_code(FILE * fp, int err_code) {
   case 11:
                 m = sizeof (LINK) * NUM_OF_LINKS_AT_A_GULP;
     fprintf(fp, "Memory limit reached\n");
-    fprintf(fp, "Memory limit: %9d*%d\n",memory_limit,m);
-    fprintf(fp, "Memory used: %9d*%d\n",memory_used,m);
+    fprintf(fp, "Memory limit: %9d*%ld\n",memory_limit,m);
+    fprintf(fp, "Memory used: %9d*%ld\n",memory_used,m);
     fprintf(fp, OPTION_MESS);
-    fprintf(fp, "memory used for view field is \'-l%d\'",(m*memory_limit)/(1024*1024));
+    fprintf(fp, "memory used for view field is \'-l%lu\'",(m*memory_limit)/(1024*1024));
     fprintf(fp, INCREASE_MESS);
     break;
   case 12:
@@ -421,7 +421,7 @@ int ri_init_stop() {
         return 0;
 }
 
-int ri_help(char reftr) {
+void ri_help(char reftr) {
  if ( reftr ) printf("Using: reftr [options] MODULE1+MODULE2+... [arguments] \n");
  else         printf("Using: refgo [options] MODULE1+MODULE2+... [arguments] \n");
 
@@ -456,7 +456,7 @@ int ri_help(char reftr) {
  printf("\n -h : print this help message.\n\n");
 }
 
-int ri_options(int argc, char * argv [], char reftr) {
+void ri_options(int argc, char * argv [], char reftr) {
   int i;
 
   gargc = 0;

@@ -79,7 +79,7 @@ struct local_path {
 
 #define MAX_ENVS 256
 static char * cap_ref5env [MAX_ENVS];
-static void read_config (void);
+//static void read_config (void);
 
 /* Only for ri_checkentry */
 #include "bif_lex.h"
@@ -1057,6 +1057,7 @@ static FILE * search_file_path (char * cp_name, char * cp_mode) {
   return open_file (cp_ref5rsl, cp_name, cp_mode);
 }
 
+#if 0
 /* Aruments:
  *   1) Buffer for saving of a variable name.
  *   2) Pointer to FILE (config file)
@@ -1257,7 +1258,8 @@ static void read_config (void) {
     fprintf (stderr, "WARNING: No environ file of Refal 5\n");
     return;
   }
-  for (i = 0;i_c = get_varname (ca_name, fp);) {
+//  for (i = 0;i_c = get_varname (ca_name, fp) ???;) {
+  for (i = 0;( i_c = get_varname (ca_name, fp) );) {
     switch (i_c) {
     case '#':
       if (EOF  == read_comments (fp)) {
@@ -1313,6 +1315,7 @@ static void read_config (void) {
     }
   } /* end of for */
 }
+#endif // 0
 #undef MAXSTR
 
 # if MDEBUG

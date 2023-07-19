@@ -237,7 +237,7 @@ EXTERNAL int line_no; /* number of the current line.  */
 EXTERNAL char cbuf [MAXSTR+1];  /* input stream buffer. */
 
 /*EXTERNAL char title [MAXWS];*/  /* title of the output. */
-EXTERNAL char title [FILENAME_MAX];
+EXTERNAL char title [FILENAME_MAX - sizeof(".   ")];
 
 EXTERNAL short sc;  /* input stream buffer pointer. */
 

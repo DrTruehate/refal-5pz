@@ -13,7 +13,6 @@ int main(argc, argv)
   int argc;
   char *argv[];
   {
-  char *s, filename [40];
 
   if (argc < 2)
     {
@@ -21,6 +20,7 @@ int main(argc, argv)
     exit(1);
     };
 # ifdef IBM370
+  char *s, filename [40];
   strcpy (filename, argv [1]);
   s = strchr (filename, '.');
   if (s) *s = ' ';

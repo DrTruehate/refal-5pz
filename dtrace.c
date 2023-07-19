@@ -478,7 +478,7 @@ int rd_delete_break (int n) {
   break_table [n].active = 0;
 
   /* 3. Change the transfer address of the preceding break point. */
-  memcpy ((char *) (break_table [prec].code + 1), (char *) (break_table [n].code + 1), sizeof (char *));
+  memcpy ((char *) (break_table [prec].code + 1), (char *) (break_table [n].code + 1), sizeof (char));
 
   /* 4. Release the memory. */
   free (break_table [n].code);

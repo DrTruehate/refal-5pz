@@ -1010,11 +1010,11 @@ int rf_rand (scale)
   est;
   return 0;
 
-  internal_error:
+  //internal_error:
     fprintf (stderr, "internal error in rf_random ()\n");
     exit (1);
 
-  call_freeze:
+  //call_freeze:
     ri_frz (2);
     return 0;
   }
