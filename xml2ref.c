@@ -6,14 +6,14 @@
 #include "fileio.h"
 #include "ifunc.h"
 
-#define CLEAN			0
-#define NEED_TO_CLOSE		1
-#define NEXT_LINE		2
+#define CLEAN     0
+#define NEED_TO_CLOSE   1
+#define NEXT_LINE   2
 
 static FILE * fp;
 
 #ifndef FOR_OS_WINDOWSNT
-static inline int 
+static inline int
 is_empty (const char * ccp, int i_len ) {
 
   for (; i_len !=0; ccp++, i_len--) {
@@ -64,7 +64,7 @@ void charData(void *userData, const char * cp_s, int i_len)
 #ifndef FOR_OS_WINDOWSNT
   if (is_empty (cp_s, i_len)) return;
 #else
-  { 
+  {
     char * cp_tmp;
     int i_len_tmp;
     for (cp_tmp = cp_s, i_len_tmp = i_len; i_len_tmp !=0; cp_tmp++, i_len_tmp--) {
@@ -75,16 +75,16 @@ void charData(void *userData, const char * cp_s, int i_len)
 l_char_data_is_not_empty:
 #endif
 
-  if (i_len == 1 && *cp_s == '\n') { 
+  if (i_len == 1 && *cp_s == '\n') {
   }else{
-  	char ca_w [10];
+    char ca_w [10];
     int i = 0;
 
     if (*tag != NEED_TO_CLOSE) {
-      ca_w [i++] = '('; 
+      ca_w [i++] = '(';
       if (* tag != NEXT_LINE) {
-		ca_w [i++] = '('; ca_w [i++] = '0'; ca_w [i++] = ' '; ca_w [i++] = ')'; 
-		ca_w [i++] = '<'; ca_w [i++] = '/'; ca_w [i++] = '>';
+    ca_w [i++] = '('; ca_w [i++] = '0'; ca_w [i++] = ' '; ca_w [i++] = ')';
+    ca_w [i++] = '<'; ca_w [i++] = '/'; ca_w [i++] = '>';
       }
     }
     fwrite (ca_w, sizeof (char), i, fp);
@@ -96,7 +96,7 @@ l_char_data_is_not_empty:
 
 int ri_xml2ref (FILE * fp_in, FILE * fp_out) {
 
-#ifdef FOR_OS_WINDOWSNT 
+#ifdef FOR_OS_WINDOWSNT
   char buf[BUFSIZ];
 
   XML_Parser parser = XML_ParserCreate(NULL);
@@ -113,14 +113,14 @@ int ri_xml2ref (FILE * fp_in, FILE * fp_out) {
     done = length < sizeof(buf);
     if (!XML_Parse(parser, buf, length, done)) {
       fprintf(stderr,
-	      "%s at line %d\n",
-	      XML_ErrorString(XML_GetErrorCode(parser)),
-	      XML_GetCurrentLineNumber(parser));
+        "%s at line %d\n",
+        XML_ErrorString(XML_GetErrorCode(parser)),
+        XML_GetCurrentLineNumber(parser));
       return 1;
     }
   } while (!done);
   XML_ParserFree(parser);
-#endif 
+#endif
 
   return 0;
 }

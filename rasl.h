@@ -1,5 +1,5 @@
 
-	/* Definitions of RASL operators. */
+  /* Definitions of RASL operators. */
 
 # define  ACT_EXTRN 1
 # define  ACT1 2
@@ -58,10 +58,10 @@
 # define  LABEL 104
 # define  BUILT_IN1 105
 
-# define  B 200	/* special code (not actually used as a RASL instruction) */
+# define  B 200 /* special code (not actually used as a RASL instruction) */
 
 
-	/* Extra RASL definitions for the Tracer. */
+  /* Extra RASL definitions for the Tracer. */
 
 # define EQS 80
 # define CHACT 84

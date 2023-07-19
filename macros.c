@@ -4,8 +4,8 @@
 # include "ifunc.h"
 
 
-		/* This file contains operators of RASL which are defined
-			as functions. Feb 28 1987. D.T. */
+    /* This file contains operators of RASL which are defined
+      as functions. Feb 28 1987. D.T. */
 
   /* For translator pgraph */
 /*extern unsigned long ul_local_calls;*/
@@ -21,18 +21,18 @@ void ri_act1 (x)
 }
 
 int ri_blr ()
-	{
-	rend = b -> foll;
-	weld (b, lfm);
-	b = lfm;
-	all;
-	con (b, lfm);	
-	weld (b, lfm);
-	b = lfm;
-	all;
-	weld (b, rend);
-	return 0;
-	}
+  {
+  rend = b -> foll;
+  weld (b, lfm);
+  b = lfm;
+  all;
+  con (b, lfm);
+  weld (b, lfm);
+  b = lfm;
+  all;
+  weld (b, rend);
+  return 0;
+  }
 
 void ri_cl ()
 {
@@ -46,22 +46,22 @@ void ri_cl ()
 }
 
 int ri_est (void) {
-	(precp -> foll) ->  prec = nextp;
-	b2 = (quap -> foll) -> prec;
-	b1 = b2 -> pair.b;
-	p = b1 -> pair.f;
-	nextp = (b2 -> foll) -> prec;
-	precp = quap;
-	(b2 -> foll) -> prec = b2;
-	sp = stoff;
-	tbel (0) = b1  -> prec;
-	tbel (1) = b1;
-	tbel (2) = b2;
-	nel = 3L;
-	actfun=p;
-	nst++;
+  (precp -> foll) ->  prec = nextp;
+  b2 = (quap -> foll) -> prec;
+  b1 = b2 -> pair.b;
+  p = b1 -> pair.f;
+  nextp = (b2 -> foll) -> prec;
+  precp = quap;
+  (b2 -> foll) -> prec = b2;
+  sp = stoff;
+  tbel (0) = b1  -> prec;
+  tbel (1) = b1;
+  tbel (2) = b2;
+  nel = 3L;
+  actfun=p;
+  nst++;
 
-	return 0;
+  return 0;
 }
 
 
@@ -103,35 +103,35 @@ int ri_mulpar (LINK * lp_beg, LINK * lp_end)
 
 /* Shura. Add META_BRACKETS */
 int ri_cpelt (oexa)
-	LINK *oexa;
-	{
-	if (!LINK_STRUCTB (oexa))
-		{
-		lfm -> pair = oexa -> pair;
-		lfm -> ptype = oexa -> ptype;
-		weld (b, lfm);
-		b = lfm;
-		all;
-		}
-	else if (LINK_LSTRUCTB (oexa))
-		{
-		lfm -> pair.b = pa;
-		pa = lfm;
-		weld (b, lfm);
-		b = lfm;
-		all;
-		}
-	else if (LINK_RSTRUCTB (oexa))
-		{
-		nextb = pa -> pair.b;
-		con (pa, lfm);
-		pa = nextb;
-		weld (b, lfm);
-		b = lfm;
-		all;	
-		};
-	return 0;
-	}
+  LINK *oexa;
+  {
+  if (!LINK_STRUCTB (oexa))
+    {
+    lfm -> pair = oexa -> pair;
+    lfm -> ptype = oexa -> ptype;
+    weld (b, lfm);
+    b = lfm;
+    all;
+    }
+  else if (LINK_LSTRUCTB (oexa))
+    {
+    lfm -> pair.b = pa;
+    pa = lfm;
+    weld (b, lfm);
+    b = lfm;
+    all;
+    }
+  else if (LINK_RSTRUCTB (oexa))
+    {
+    nextb = pa -> pair.b;
+    con (pa, lfm);
+    pa = nextb;
+    weld (b, lfm);
+    b = lfm;
+    all;
+    };
+  return 0;
+  }
 
 
 int ri_ns1 ()
@@ -143,7 +143,7 @@ int ri_ns1 ()
   /* all is:
    * if (NULL == (lfm = lfm -> foll)) lfm = ri_fmount ();
    */
-  weld (b, rend); 
+  weld (b, rend);
   /* (<) <-> b=(*) <-> rend=(..>) ... [list of free memory] */
   return 0;
 }
@@ -173,11 +173,11 @@ void ri_out (n)
   j = tel [n];
   if (j != b) {
     rend = j -> foll;
-  	if (rend != b) {
-		weld (j, lfm);
-		lfm = b -> foll;
-		weld (b, rend);
-	}
+    if (rend != b) {
+    weld (j, lfm);
+    lfm = b -> foll;
+    weld (b, rend);
+  }
   }
 }
 /*
@@ -222,214 +222,214 @@ int ri_tpls (arg)
 }
 
 int ri_rimp ()
-	{
-	/*printf ("DEBUG. Stack depth: %d\n", sp);*/
-	sp--;
-	/*printf ("DEBUG. Stack depth: %d\n", sp);*/
-	popst (b1, b2, nel, p);
-	/* FOR DEBUG */
-	/*if (p != NULL) printf ("Instruction (stack): %d\n", * p);*/
-	while (p == NULL)
-		{
-		rend = b2 -> foll;
-		weld (b2, lfm);
-		lfm = b1;
-		weld (b1 -> prec, rend);
+  {
+  /*printf ("DEBUG. Stack depth: %d\n", sp);*/
+  sp--;
+  /*printf ("DEBUG. Stack depth: %d\n", sp);*/
+  popst (b1, b2, nel, p);
+  /* FOR DEBUG */
+  /*if (p != NULL) printf ("Instruction (stack): %d\n", * p);*/
+  while (p == NULL)
+    {
+    rend = b2 -> foll;
+    weld (b2, lfm);
+    lfm = b1;
+    weld (b1 -> prec, rend);
 
-		/*printf ("DEBUG. Stack depth: %d\n", sp);*/
-		sp--;
-		/*printf ("DEBUG. Stack depth: %d\n", sp);*/
-		popst (b1, b2, nel, p);
-		/* FOR DEBUG */
-		/*if (p != NULL) printf ("Instruction (stack): %d\n", * p);*/
-		};
-	/* FOR DEBUG */
-	/*printf ("Restore instruction from stack\n");*/
-	return 0;
-	}
+    /*printf ("DEBUG. Stack depth: %d\n", sp);*/
+    sp--;
+    /*printf ("DEBUG. Stack depth: %d\n", sp);*/
+    popst (b1, b2, nel, p);
+    /* FOR DEBUG */
+    /*if (p != NULL) printf ("Instruction (stack): %d\n", * p);*/
+    };
+  /* FOR DEBUG */
+  /*printf ("Restore instruction from stack\n");*/
+  return 0;
+  }
 
 
 int ri_oexp (q)
-	int q;
-	{
-	LINK *j, *oexa;
+  int q;
+  {
+  LINK *j, *oexa;
 
-	if (tbel (q-1) == NULL) tbel (nel)=NULL;
-	else
-		{
-		tbel (nel) = b1  -> foll;
-		oexa = tbel (q-1) -> prec;
-		j = tbel (q);
-		while (oexa != j)
-			{
-			oexa = oexa -> foll;
-			movb1;
-			if (LINK_VAR (b1) || LINK_VAR (oexa))
-				{
-				if (!LINK_EQTYPES (b1, oexa)) freeze
-				else if (b1 -> pair.n != oexa -> pair.n) freeze
-				}
-			else if (!LINK_EQTYPES (b1, oexa)) rimp
-			else if (LINK_STRUCTB (b1));
-			else if (LINK_CHAR (b1))
-				{
-				if (b1 -> pair.c!=oexa -> pair.c)rimp;
-				}
-			else if (b1 -> pair.n!=oexa -> pair.n) rimp;
-			}
-		};
-	tbel (++nel) = b1;
-	nel++;
-	return 0;
+  if (tbel (q-1) == NULL) tbel (nel)=NULL;
+  else
+    {
+    tbel (nel) = b1  -> foll;
+    oexa = tbel (q-1) -> prec;
+    j = tbel (q);
+    while (oexa != j)
+      {
+      oexa = oexa -> foll;
+      movb1;
+      if (LINK_VAR (b1) || LINK_VAR (oexa))
+        {
+        if (!LINK_EQTYPES (b1, oexa)) freeze
+        else if (b1 -> pair.n != oexa -> pair.n) freeze
+        }
+      else if (!LINK_EQTYPES (b1, oexa)) rimp
+      else if (LINK_STRUCTB (b1));
+      else if (LINK_CHAR (b1))
+        {
+        if (b1 -> pair.c!=oexa -> pair.c)rimp;
+        }
+      else if (b1 -> pair.n!=oexa -> pair.n) rimp;
+      }
+    };
+  tbel (++nel) = b1;
+  nel++;
+  return 0;
 
-	restart:
-		return 1;
-	}
+  restart:
+    return 1;
+  }
 
 
 int ri_oexpr (n)
-	int n;
-	{
-	LINK *j, *oexa;
+  int n;
+  {
+  LINK *j, *oexa;
 
-	tbel (nel+1) = b2 -> prec;
-	if (tbel (n-1) == NULL)
-		{
-		tbel (nel)=NULL;
-		nel += 2;
-		}
-	else
-		{
-		oexa = tbel (n) -> foll;
-		j = tbel (n-1);
-		while (oexa != j)
-			{
-			oexa = oexa -> prec;
-			movb2;
-			if (LINK_VAR (b2) || LINK_VAR (oexa))
-				{
-				if (!LINK_EQTYPES (b2, oexa)) freeze
-				else if (b2 -> pair.n != oexa -> pair.n) freeze
-				}
-			else if (!LINK_EQTYPES (b2, oexa)) rimp
-			else if (LINK_STRUCTB (b2)) ;
-			else if (LINK_CHAR (b2))
-				{
-				if (b2 -> pair.c != oexa -> pair.c) rimp
-				}
-			else if (b2 -> pair.n != oexa -> pair.n) rimp;
-			};
-		tbel (nel) = b2;
-		nel += 2;
-		}
-	return 0;
+  tbel (nel+1) = b2 -> prec;
+  if (tbel (n-1) == NULL)
+    {
+    tbel (nel)=NULL;
+    nel += 2;
+    }
+  else
+    {
+    oexa = tbel (n) -> foll;
+    j = tbel (n-1);
+    while (oexa != j)
+      {
+      oexa = oexa -> prec;
+      movb2;
+      if (LINK_VAR (b2) || LINK_VAR (oexa))
+        {
+        if (!LINK_EQTYPES (b2, oexa)) freeze
+        else if (b2 -> pair.n != oexa -> pair.n) freeze
+        }
+      else if (!LINK_EQTYPES (b2, oexa)) rimp
+      else if (LINK_STRUCTB (b2)) ;
+      else if (LINK_CHAR (b2))
+        {
+        if (b2 -> pair.c != oexa -> pair.c) rimp
+        }
+      else if (b2 -> pair.n != oexa -> pair.n) rimp;
+      };
+    tbel (nel) = b2;
+    nel += 2;
+    }
+  return 0;
 
-	restart:
-		return 1;
-	}
+  restart:
+    return 1;
+  }
 
 int ri_ovs (n)
-	int n;
-	{
-		movb1;
-		if (LINK_VAR (b1) || LINK_VAR (tbel (n)))
-			{
-			if (LINK_SVAR (b1) && LINK_SVAR (tbel (n)) &&
-					b1 -> pair.n == tbel (n) -> pair.n) ;
-			else freeze
-			}
-		else if (!LINK_EQTYPES (b1, tbel (n))) rimp
-		else if (LINK_CHAR (b1))
-			{
-			if (b1 -> pair.c != tbel (n) -> pair.c) rimp
-			}
-		else if (b1 -> pair.n != tbel (n) -> pair.n) rimp
-		tbel (nel) = b1;
-		nel++;
-		return 0;
+  int n;
+  {
+    movb1;
+    if (LINK_VAR (b1) || LINK_VAR (tbel (n)))
+      {
+      if (LINK_SVAR (b1) && LINK_SVAR (tbel (n)) &&
+          b1 -> pair.n == tbel (n) -> pair.n) ;
+      else freeze
+      }
+    else if (!LINK_EQTYPES (b1, tbel (n))) rimp
+    else if (LINK_CHAR (b1))
+      {
+      if (b1 -> pair.c != tbel (n) -> pair.c) rimp
+      }
+    else if (b1 -> pair.n != tbel (n) -> pair.n) rimp
+    tbel (nel) = b1;
+    nel++;
+    return 0;
 
-	restart:
-		return 1;
-	}
+  restart:
+    return 1;
+  }
 
 int ri_ovsr (n)
-	int n;
-	{
-		movb2;
-		if (LINK_VAR (b2) || LINK_VAR (tbel (n)))
-			{
-			if (LINK_SVAR (b2) && LINK_SVAR (tbel (n)) &&
-					b2 -> pair.n == tbel (n) -> pair.n) ;
-			else freeze
-			}
-		else if (!LINK_EQTYPES (b2, tbel (n))) rimp
-		else if (LINK_CHAR (b2))
-			{
-			if (b2 -> pair.c != tbel (n) -> pair.c) rimp
-			}
-		else if (b2 -> pair.n != tbel (n) -> pair.n) rimp
-		tbel (nel) = b2;
-		nel++;
-		return 0;
+  int n;
+  {
+    movb2;
+    if (LINK_VAR (b2) || LINK_VAR (tbel (n)))
+      {
+      if (LINK_SVAR (b2) && LINK_SVAR (tbel (n)) &&
+          b2 -> pair.n == tbel (n) -> pair.n) ;
+      else freeze
+      }
+    else if (!LINK_EQTYPES (b2, tbel (n))) rimp
+    else if (LINK_CHAR (b2))
+      {
+      if (b2 -> pair.c != tbel (n) -> pair.c) rimp
+      }
+    else if (b2 -> pair.n != tbel (n) -> pair.n) rimp
+    tbel (nel) = b2;
+    nel++;
+    return 0;
 
-	restart:
-		return 1;
-	}
+  restart:
+    return 1;
+  }
 
 int ri_lens (c)
-	char c;
-	{
-		LINK *j;
+  char c;
+  {
+    LINK *j;
 
-		if (tbel (nel) == NULL) tbel (nel) = b1 -> foll;
-		b1 = tbel (nel+2);
-		do
-			{
-			movb1;
-			while (LINK_STRUCTB (b1))
-				{
-				b1 = b1 -> pair.b;
-				movb1;
-				}
-			if (LINK_VAR (b1)) freeze
-			}
-			while (!LINK_CHAR (b1) || b1 -> pair.c != c);
-		j = tbel (nel);
-		if (j == b1) tbel (nel) = NULL;
-		sp++;
-		tbel (++nel) = b1 -> prec;
-		tbel (++nel) = b1;
-		nel++;
-		return 0;
+    if (tbel (nel) == NULL) tbel (nel) = b1 -> foll;
+    b1 = tbel (nel+2);
+    do
+      {
+      movb1;
+      while (LINK_STRUCTB (b1))
+        {
+        b1 = b1 -> pair.b;
+        movb1;
+        }
+      if (LINK_VAR (b1)) freeze
+      }
+      while (!LINK_CHAR (b1) || b1 -> pair.c != c);
+    j = tbel (nel);
+    if (j == b1) tbel (nel) = NULL;
+    sp++;
+    tbel (++nel) = b1 -> prec;
+    tbel (++nel) = b1;
+    nel++;
+    return 0;
 
-	restart:
-		return 1;
-	}
+  restart:
+    return 1;
+  }
 
 
 int ri_lenp ()
-	{
-		LINK *j;
+  {
+    LINK *j;
 
-		if (tbel (nel) == NULL) tbel (nel) = b1 -> foll;
-		b1 = tbel (nel+3);
-		movb1;
-		while (!LINK_LSTRUCTB (b1))
-			{
-			if (LINK_EVAR (b1)) freeze;
-			movb1;
-			}
-		b2 = b1 -> pair.b;
-		j = tbel (nel);
-		if (j == b1) tbel (nel) = NULL;
-		++sp;
-		tbel (nel+1) = b1 -> prec;
-		tbel (nel+2) = b1;
-		tbel (nel+3) = b2;
-		nel += 4;
-		return 0;
+    if (tbel (nel) == NULL) tbel (nel) = b1 -> foll;
+    b1 = tbel (nel+3);
+    movb1;
+    while (!LINK_LSTRUCTB (b1))
+      {
+      if (LINK_EVAR (b1)) freeze;
+      movb1;
+      }
+    b2 = b1 -> pair.b;
+    j = tbel (nel);
+    if (j == b1) tbel (nel) = NULL;
+    ++sp;
+    tbel (nel+1) = b1 -> prec;
+    tbel (nel+2) = b1;
+    tbel (nel+3) = b2;
+    nel += 4;
+    return 0;
 
-	restart:
-		return 1;
-	}
+  restart:
+    return 1;
+  }
 

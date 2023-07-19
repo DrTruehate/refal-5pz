@@ -3,8 +3,8 @@
 
 /* structure for built in functions: */
 struct bitab {
-  char *fname;		/* name */
-  int fnumber;		/* internal number. */
-  int flags;		/* flags: */
+  char *fname;    /* name */
+  int fnumber;    /* internal number. */
+  int flags;    /* flags: */
 };
 

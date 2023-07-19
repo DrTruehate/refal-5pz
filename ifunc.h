@@ -96,20 +96,20 @@ int rf_prout (void);
 int rf_put (void);
 int rf_br (void);
 int rf_putout (char);
-int rf_card (void); 
+int rf_card (void);
 int rf_print (void);
-int rf_type (void); 
+int rf_type (void);
 int rf_dg (void);
 int rf_get (void);
 int rf_arg (void);
 char *mu_find (char *, char **);
 int rf_mu (char **, int);
 int mu_special (char *, char);
-int rf_getenv (void); 
-int rf_getpid (void); 
-int rf_getppid (void); 
-int rf_system (void); 
-int rf_exit (void); 
+int rf_getenv (void);
+int rf_getpid (void);
+int rf_getppid (void);
+int rf_system (void);
+int rf_exit (void);
 int rf_close (void);
 int rf_existfile (void);
 int rf_getcurrentdirectory (void);
@@ -124,7 +124,7 @@ int rf_XMLParse (void);
 int rf_cp (void);
 int rf_chr (void);
 int rf_ord (void);
-int rf_last (void);	
+int rf_last (void);
 int rf_first (void);
 int rf_implode (void);
 int rf_explode (void);
@@ -145,36 +145,36 @@ int rf_recv (void);
 void ri_socket_init (void);
 
 /* arithm.c -- definitions of arithmetic and related functions. */
-int rf_symb (void); 
-int rf_numb (void);	
+int rf_symb (void);
+int rf_numb (void);
 int get_length (struct link *, struct link *, int *);
 int reverse_num (unsigned short *, int);
 int divide_num (unsigned short *, unsigned long, int, unsigned long,
-	unsigned short *);
+  unsigned short *);
 int is_zero_num (unsigned short *, int);
 int convert_num (unsigned short *, unsigned long, int, unsigned short *,
-	unsigned long, int *);
+  unsigned long, int *);
 int store_long_num (unsigned short *, struct link *, struct link *, int);
 int restore_long_num (unsigned short *, int);
 int compare_num (unsigned short *, int, unsigned short *, int);
 int rf_arithm (int);
 int arithm_apply (int, unsigned short *, int, int, unsigned short *, int,
-	int, unsigned short *, int *, int *, unsigned short *, int *,
-	unsigned short *);
+  int, unsigned short *, int *, int *, unsigned short *, int *,
+  unsigned short *);
 int ar_mul (unsigned short *, int, unsigned short *, int,
-	unsigned short *, int *);
+  unsigned short *, int *);
 int ar_add (unsigned short *, int, unsigned short *, int,
-	unsigned short *, int *);
+  unsigned short *, int *);
 int ar_sub (unsigned short *, int, unsigned short *, int,
-	unsigned short *, int *);
+  unsigned short *, int *);
 int ar_div (unsigned short *, int, unsigned short *, int,
-	unsigned short *, int *, unsigned short *, int *, unsigned short *);
+  unsigned short *, int *, unsigned short *, int *, unsigned short *);
 int ar_div_long (unsigned short *, int, unsigned short *, int,
-	unsigned short *, int *, unsigned short *, int *, unsigned short *);
+  unsigned short *, int *, unsigned short *, int *, unsigned short *);
 int divide_select (unsigned short *, int, unsigned short *, int,
-	unsigned short *);
-int rf_random (void);	
-int rf_randomDigit (void);	
+  unsigned short *);
+int rf_random (void);
+int rf_randomDigit (void);
 int rf_rand (char);
 unsigned long random_macro_digit (unsigned long);
 

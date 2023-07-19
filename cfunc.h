@@ -6,7 +6,7 @@ int main (int, char * *);
 int ri_inquire (char *, char *, int);
 int rc_ungchar (char);
 int rc_gchar (void);
-	/* debugging in main.c */
+  /* debugging in main.c */
 int print_expr (struct element *);
 int print_tree (struct node *);
 char *rasl_code (int);
@@ -104,8 +104,8 @@ int split_string (struct rasl_instruction *, int, int, int);
 int ch2sym (struct rasl_instruction *);
 int chop_tail (struct rasl_instruction *);
 int is_left_part (struct rasl_instruction *);
-int comp_next_ins (struct rasl_instruction *, struct rasl_instruction *, 
-	struct rasl_instruction **);
+int comp_next_ins (struct rasl_instruction *, struct rasl_instruction *,
+  struct rasl_instruction **);
 int delete_to_ptr (struct rasl_instruction *, struct rasl_instruction *);
 int save_label (int, struct rasl_instruction *);
 struct rasl_instruction *find_def_label (int);
@@ -123,7 +123,7 @@ long rc_getcsn (char *);
 int rc_vyvod (struct rasl_instruction * *, int);
 
 #ifdef FOR_OS_LINUX
-#	ifndef FOR_OS_OS2
+# ifndef FOR_OS_OS2
 /* This code is inserted by Shura. 22.01.98 */
 /* strupr is in MS-DOS, but none in UNIX. So, the code depent from
  * version of UNIX. Here is implemented only Latin charcters.
@@ -164,6 +164,6 @@ strupr (char * cp_str) {
     }
   }
 }
-#	endif
+# endif
 #endif
 

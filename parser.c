@@ -8,172 +8,172 @@
 
 
 int rc_skip (t)
-	int t;
-	{
-	while ((token != t) && (token != EOF)) next_token;
-	return 0;
-	}
+  int t;
+  {
+  while ((token != t) && (token != EOF)) next_token;
+  return 0;
+  }
 
 char *rc_fname ()
-	{
-	char *fn;
+  {
+  char *fn;
 
-	if (token != ID) rc_serror (104, NULL);
-	while (token != ID)
-		{
-		rc_skip ('}');
-		next_token;
-		if (token == ';') next_token;
-		if (token == EOF) return NULL;
-		};
-	fn = rc_deffn ();
-	if (fn != NULL) strcpy (last_fn, fn); /*strncpy (last_fn, fn, MAXWS);*/
-	else strcpy (last_fn, "***");
-	next_token;
-	return fn;
-	}
+  if (token != ID) rc_serror (104, NULL);
+  while (token != ID)
+    {
+    rc_skip ('}');
+    next_token;
+    if (token == ';') next_token;
+    if (token == EOF) return NULL;
+    };
+  fn = rc_deffn ();
+  if (fn != NULL) strcpy (last_fn, fn); /*strncpy (last_fn, fn, MAXWS);*/
+  else strcpy (last_fn, "***");
+  next_token;
+  return fn;
+  }
 
 
 struct node *rc_r_first ()
-	{
-	branch_t p1, p2, p3;
+  {
+  branch_t p1, p2, p3;
 
-	p1.chunk = rc_r_side ();
-	if (token != ':')
-		{
-		rc_serror (107, NULL);
-		rc_skip (';');
-		return Error;
-		}
-	else next_token;
-	if (token == '{')
-		{
-		next_token;
-		p2.tree = rc_l_list ();
-		if (token != '}')
-			{
-			rc_serror (102, NULL);
-			rc_skip (';');
-			return Error;
-			}
-		else next_token;
-		return rc_mknode (RSF1B, p1, p2, zero);
-		};
-	pushstk;
-	p2.chunk = rc_l_side ();
-	p3.tree = rc_r_tail ();
-	popstk;
-	return rc_mknode (RSF1, p1, p2, p3);
-	}
+  p1.chunk = rc_r_side ();
+  if (token != ':')
+    {
+    rc_serror (107, NULL);
+    rc_skip (';');
+    return Error;
+    }
+  else next_token;
+  if (token == '{')
+    {
+    next_token;
+    p2.tree = rc_l_list ();
+    if (token != '}')
+      {
+      rc_serror (102, NULL);
+      rc_skip (';');
+      return Error;
+      }
+    else next_token;
+    return rc_mknode (RSF1B, p1, p2, zero);
+    };
+  pushstk;
+  p2.chunk = rc_l_side ();
+  p3.tree = rc_r_tail ();
+  popstk;
+  return rc_mknode (RSF1, p1, p2, p3);
+  }
 
 struct node *rc_r_list ()
-	{
-	branch_t p1, p2;
+  {
+  branch_t p1, p2;
 
-	p1.tree = rc_r_first ();
-	if (token == ';')
-		{
-		next_token;
-		if (token == '}') p2.tree = NULL;
-		else p2.tree = rc_r_list ();
-		}
-	else p2.tree = NULL;
-	return rc_mknode (RSF, p1, p2, zero);
-	}
+  p1.tree = rc_r_first ();
+  if (token == ';')
+    {
+    next_token;
+    if (token == '}') p2.tree = NULL;
+    else p2.tree = rc_r_list ();
+    }
+  else p2.tree = NULL;
+  return rc_mknode (RSF, p1, p2, zero);
+  }
 
 struct node *rc_l_first ()
-	{
-	branch_t p1, p2;
+  {
+  branch_t p1, p2;
 
-	pushstk;
-	p1.chunk = rc_l_side ();
-	p2.tree = rc_r_tail ();
-	if (p2.tree == Error)
-		{
-		popstk;
-		rc_skip (';');
-		return Error;
-		};
-	popstk;
-	return rc_mknode (LSF1, p1, p2, zero);
-	}
+  pushstk;
+  p1.chunk = rc_l_side ();
+  p2.tree = rc_r_tail ();
+  if (p2.tree == Error)
+    {
+    popstk;
+    rc_skip (';');
+    return Error;
+    };
+  popstk;
+  return rc_mknode (LSF1, p1, p2, zero);
+  }
 
 struct node *rc_l_list ()
-	{
-	branch_t p1, p2;
+  {
+  branch_t p1, p2;
 
-	p1.tree = rc_l_first ();
-	if (token == ';')
-		{
-		next_token;
-		if (token == '}') p2.tree = NULL;
-		else p2.tree = rc_l_list ();
-		}
-	else p2.tree = NULL;
-	return rc_mknode (LSF, p1, p2, zero);
-	}
+  p1.tree = rc_l_first ();
+  if (token == ';')
+    {
+    next_token;
+    if (token == '}') p2.tree = NULL;
+    else p2.tree = rc_l_list ();
+    }
+  else p2.tree = NULL;
+  return rc_mknode (LSF, p1, p2, zero);
+  }
 
 
 struct node *rc_r_tail ()
-	{
-	branch_t p1, p2, p3;
+  {
+  branch_t p1, p2, p3;
 
-	if (token == '=')
-		{
-		next_token;
-		p1.chunk = rc_r_side ();
-		return rc_mknode (RCS1, p1, zero, zero);
-		}
-	else if (token != ',')
-		{
-		rc_serror (106, NULL);
-		rc_skip (';');
-		return (Error);
-		}
-	next_token;
-	if (token == '{')
-		{
-		next_token;
-		p1.tree = rc_r_list ();
-		if (token != '}')
-			{
-			free_tree (p1.tree);
-			rc_serror (102, NULL);
-			rc_skip ('}');
-			return (Error);
-			}
-		else next_token;
-		return rc_mknode (RCS4, p1, zero, zero);
-		};
-	p1.chunk = rc_r_side ();
-	if (token != ':')
-		{
-		rc_serror (107, NULL);
-		rc_skip (';');
-		free_tree (p1.tree);
-		return Error;
-		}
-	else next_token;
-	if (token == '{')
-		{
-		next_token;
-		p2.tree = rc_l_list ();
-		if (token != '}')
-			{
-			rc_serror (102, NULL);
-			rc_skip ('}');
-			free_tree (p1.tree);
-			free_tree (p2.tree);
-			return Error;
-			}
-		else next_token;
-		return rc_mknode (RCS3, p1, p2, zero);
-		};
-	p2.chunk = rc_l_side ();
-	p3.tree = rc_r_tail ();
-	return rc_mknode (RCS2, p1, p2, p3);
+  if (token == '=')
+    {
+    next_token;
+    p1.chunk = rc_r_side ();
+    return rc_mknode (RCS1, p1, zero, zero);
+    }
+  else if (token != ',')
+    {
+    rc_serror (106, NULL);
+    rc_skip (';');
+    return (Error);
+    }
+  next_token;
+  if (token == '{')
+    {
+    next_token;
+    p1.tree = rc_r_list ();
+    if (token != '}')
+      {
+      free_tree (p1.tree);
+      rc_serror (102, NULL);
+      rc_skip ('}');
+      return (Error);
+      }
+    else next_token;
+    return rc_mknode (RCS4, p1, zero, zero);
+    };
+  p1.chunk = rc_r_side ();
+  if (token != ':')
+    {
+    rc_serror (107, NULL);
+    rc_skip (';');
+    free_tree (p1.tree);
+    return Error;
+    }
+  else next_token;
+  if (token == '{')
+    {
+    next_token;
+    p2.tree = rc_l_list ();
+    if (token != '}')
+      {
+      rc_serror (102, NULL);
+      rc_skip ('}');
+      free_tree (p1.tree);
+      free_tree (p2.tree);
+      return Error;
+      }
+    else next_token;
+    return rc_mknode (RCS3, p1, p2, zero);
+    };
+  p2.chunk = rc_l_side ();
+  p3.tree = rc_r_tail ();
+  return rc_mknode (RCS2, p1, p2, p3);
 
-	}
+  }
 
 
 struct node *
@@ -192,7 +192,7 @@ rc_sentence (void) {
 
 
 struct node *
-rc_sents (void)	{
+rc_sents (void) {
   branch_t st, sts, stsl, j;
 
   st.tree = rc_sentence ();
@@ -211,41 +211,41 @@ rc_sents (void)	{
 }
 
 int rc_1ofsent (t)
-	int t;
+  int t;
 
-	/* Determines if the token is in the FIRST of sentence. */
+  /* Determines if the token is in the FIRST of sentence. */
 
-	{
-	return (t != ';') && (t != '}');
-	}
+  {
+  return (t != ';') && (t != '}');
+  }
 
 char *rc_idlist ()
-	{
+  {
 
-	if (token != ID)
-		{
-		rc_serror (104, NULL);
-		rc_skip (';');
-		}
-	else
-		{
-		rc_mkextrn (str);
-		next_token;};
-	while (token == ',')
-		{
-		next_token;
-		if (token != ID)
-			{
-			rc_serror (104, NULL);
-			rc_skip (';');
-			}
-		else
-			{
-			rc_mkextrn (str);
-			next_token;};
-		};
-	return NULL;
-	}
+  if (token != ID)
+    {
+    rc_serror (104, NULL);
+    rc_skip (';');
+    }
+  else
+    {
+    rc_mkextrn (str);
+    next_token;};
+  while (token == ',')
+    {
+    next_token;
+    if (token != ID)
+      {
+      rc_serror (104, NULL);
+      rc_skip (';');
+      }
+    else
+      {
+      rc_mkextrn (str);
+      next_token;};
+    };
+  return NULL;
+  }
 
 struct node *
 rc_fdef (void) {
@@ -296,9 +296,9 @@ rc_parser (void) {
 }
 
 struct element *rc_r_side ()
-	{
-	return refal_expression (1);
-	}
+  {
+  return refal_expression (1);
+  }
 
 struct element *
 rc_l_side (void) {

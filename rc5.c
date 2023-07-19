@@ -11,105 +11,105 @@
 # include "cfunc.h"
 
 
-	/* suppress debugging. */
+  /* suppress debugging. */
 # define MDEBUG 0
 
 int
 main (int argc, char * argv []) {
-	struct node *q;
-	char * blk_temp;
-	int total_errors, i;
-	char fname [FILENAME_MAX];
-  
-	/* print the version and copyright information. */
-	printf (VERSION, "Compiler", _refal_build_version);
-	printf ("Copyright: Refal Systems Inc.\n");
+  struct node *q;
+  char * blk_temp;
+  int total_errors, i;
+  char fname [FILENAME_MAX];
 
-	rc_initcom (argc, argv); /* see pass2.c */
-	i = rc_getbeginfile (argv);
-	do { /* added by Shura for Korlukov */
-		i ++; /* added by Shura for Korlukov */
+  /* print the version and copyright information. */
+  printf (VERSION, "Compiler", _refal_build_version);
+  printf ("Copyright: Refal Systems Inc.\n");
 
-		zero.number = 0;	/* create empty record. */
-		ftransl = NULL;	/* initialize the translation pointer. */
-		Error = rc_mknode (0, zero, zero, zero);
+  rc_initcom (argc, argv); /* see pass2.c */
+  i = rc_getbeginfile (argv);
+  do { /* added by Shura for Korlukov */
+    i ++; /* added by Shura for Korlukov */
 
-		/* initialize. */
-		fc = fb = ft = fx = fe = cs = NULL;
-		z = cscount = ntcount = xtcount = btcount = 0L;
-		total_errors = 0;
+    zero.number = 0;  /* create empty record. */
+    ftransl = NULL; /* initialize the translation pointer. */
+    Error = rc_mknode (0, zero, zero, zero);
 
-		/* allocate memory for tables: this memory is needed throughout 
-		 * the execution of the program -- therefore it is not explicitly released. 
-		 * (it is released in the exit() function)
-		 */
-		if ((nonret = (char *) malloc (MEM_BLK_SIZE)) == NULL) {
-			fprintf (stderr,"Can\'t allocate memory.\n");
-		    exit (1);
-		}
-		nrptr = 0;
+    /* initialize. */
+    fc = fb = ft = fx = fe = cs = NULL;
+    z = cscount = ntcount = xtcount = btcount = 0L;
+    total_errors = 0;
 
-		/* loop parse, compile. some loop on rc_parse */
-		while (1) {
-			/* clear */
-			rc_initrp ();
-			q = rc_parser ();
+    /* allocate memory for tables: this memory is needed throughout
+     * the execution of the program -- therefore it is not explicitly released.
+     * (it is released in the exit() function)
+     */
+    if ((nonret = (char *) malloc (MEM_BLK_SIZE)) == NULL) {
+      fprintf (stderr,"Can\'t allocate memory.\n");
+        exit (1);
+    }
+    nrptr = 0;
 
-			if (q == NULL) {
-				if (nerrors == 0) break;
-			}
-			if (nerrors) {
-				total_errors += nerrors;
-				fprintf (stderr, "%d errors found in function %s\n", nerrors, last_fn);
-				continue;
-			}
+    /* loop parse, compile. some loop on rc_parse */
+    while (1) {
+      /* clear */
+      rc_initrp ();
+      q = rc_parser ();
 
-			/* reset the label */
-			last_label = 1;
-			refcom (q);
+      if (q == NULL) {
+        if (nerrors == 0) break;
+      }
+      if (nerrors) {
+        total_errors += nerrors;
+        fprintf (stderr, "%d errors found in function %s\n", nerrors, last_fn);
+        continue;
+      }
 
-			/* free allocated memory. */
-			free_tree (q);
+      /* reset the label */
+      last_label = 1;
+      refcom (q);
 
-			/* free dicardable memory. */
-			while (block != NULL) {
-				blk_temp = * ((char **) block);
-				free ((void *) block);
-				block = blk_temp;
-			}
-		}
-		/* if there were errors delete temp files. */
-		if (total_errors) {
-			fclose (fdref);
-			fclose (fdlis);
-			fclose (fdtmpw);
-			sprintf (fname, "%s.tmp", title);
-			unlink (fname);
-			fprintf (stderr, "%d syntax errors found.\n", total_errors);
-			exit (1);
-		} else {
-			/* otherwise do the 2nd pass. */
-			rc_end ();
-			if (nerrors) {
-				fprintf (stderr, "%d errors in pass 2.\n", nerrors);
-				sprintf (fname, "%s.rsl", title);
-				unlink (fname);
-				exit (1);
-			} else if (!strchr (c_flags, 'l')) {
-				/* unlink the unnecessary .lis file. */
-				sprintf (fname, "%s.lis", title);
-				unlink (fname);
-			}
-		}
-	} while (-1 != (i = rc_getnextfile (i, argv)));/* added by Shura for Korlukov */
-	exit (0);
+      /* free allocated memory. */
+      free_tree (q);
+
+      /* free dicardable memory. */
+      while (block != NULL) {
+        blk_temp = * ((char **) block);
+        free ((void *) block);
+        block = blk_temp;
+      }
+    }
+    /* if there were errors delete temp files. */
+    if (total_errors) {
+      fclose (fdref);
+      fclose (fdlis);
+      fclose (fdtmpw);
+      sprintf (fname, "%s.tmp", title);
+      unlink (fname);
+      fprintf (stderr, "%d syntax errors found.\n", total_errors);
+      exit (1);
+    } else {
+      /* otherwise do the 2nd pass. */
+      rc_end ();
+      if (nerrors) {
+        fprintf (stderr, "%d errors in pass 2.\n", nerrors);
+        sprintf (fname, "%s.rsl", title);
+        unlink (fname);
+        exit (1);
+      } else if (!strchr (c_flags, 'l')) {
+        /* unlink the unnecessary .lis file. */
+        sprintf (fname, "%s.lis", title);
+        unlink (fname);
+      }
+    }
+  } while (-1 != (i = rc_getnextfile (i, argv)));/* added by Shura for Korlukov */
+  exit (0);
 }
 
 
 int ri_inquire(char * m, char * r, int i_len) {
   *r = '\0';
   while (*r == '\0') {
-	int i;
+  int i;
 
     fprintf(stderr,"%s",m);
     if (NULL == fgets(r, i_len - 1, stdout)) {
@@ -123,7 +123,7 @@ int ri_inquire(char * m, char * r, int i_len) {
 
 /* define input routines. (they are redefined for the tracer). */
 /* Puts character C back on the input buffer.  */
-/*	July 27 1985. D.T.  */
+/*  July 27 1985. D.T.  */
 int rc_ungchar(char c) {
   cbuf[--sc] = c;
   return 0;
@@ -201,11 +201,11 @@ int print_expr (struct element * e) {
     case ACT_LEFT:
       printf (" <%s", e -> body.f);
       break;
-      
+
     case ACT_RIGHT:
       printf (" %s>", e -> body.f);
       break;
-      
+
     case STRING:
       printf (" \"%s\"", e -> body.f);
       break;
@@ -232,7 +232,7 @@ int print_tree (struct node * q) {
     printf ("node %d entry/fdef=%d func name %s\n", id ++, t, q -> a2.pchar);
     print_tree (q -> a3.tree);
     printf ("end node %d entry/fdef=%d func name %s\n",
-	    save_id, t, q -> a2.pchar);
+      save_id, t, q -> a2.pchar);
     break;
 
   case SENTS:
@@ -266,9 +266,9 @@ int print_tree (struct node * q) {
   case RCS2:
   case RSF1B:
   case RSF1:
-  case RSF: 
+  case RSF:
   case LSF1:
-  case LSF: 
+  case LSF:
     printf ("Complex sentence: %d\n", t);
     break;
 
@@ -283,7 +283,7 @@ int print_tree (struct node * q) {
 
 char *mnemonics [NUM_OF_RASL_INSTR] = {
   "ACT1", "BL", "BLR", "BR", "CL", "SYM", "SYMR", "EMP", "EST",
-  "MULE", "MULS", "PLEN", "PLENS", "PLENP",	"PS", "PSR", "OEXP",
+  "MULE", "MULS", "PLEN", "PLENS", "PLENP", "PS", "PSR", "OEXP",
   "OEXPR", "OVSYM", "OVSYMR", "TERM", "TERMR", "RDY", "SETB",
   "LEN", "LENS", "LENP", "LENOS", "SYMS", "SYMSR", "TEXT", "NS",
   "TPLE", "TPLS", "TRAN", "VSYM", "VSYMR", "OUTEST", "ECOND",
@@ -293,7 +293,7 @@ char *mnemonics [NUM_OF_RASL_INSTR] = {
 
 int rasl_numbers [NUM_OF_RASL_INSTR] = {
   ACT1, BL, BLR, BR, CL, SYM, SYMR, EMP, EST,
-  MULE, MULS, PLEN, PLENS, PLENP,	PS, PSR, OEXP,
+  MULE, MULS, PLEN, PLENS, PLENP, PS, PSR, OEXP,
   OEXPR, OVSYM, OVSYMR, TERM, TERMR, RDY, SETB,
   LEN, LENS, LENP, LENOS, SYMS, SYMSR, TEXT, NS,
   TPLE, TPLS, TRAN, VSYM, VSYMR, OUTEST, ECOND,
@@ -367,23 +367,23 @@ int print_rasl_inst (struct rasl_instruction *r) {
   case NSYM: case NSYMR: case NNS:
     printf ("   %s %lu\n", rasl_code (rasl_ins), r -> p.n);
     break;
-    
+
     /* these instructions take 1 character pointer argument. */
   case CSYM: case CSYMR: case NCS: case ACT1:
     printf ("   %s %s\n", rasl_code (rasl_ins), r -> p.f);
     break;
-    
+
     /* these instructions take 2 arguments: length and pointer. */
   case SYMS: case SYMSR: case TEXT:
     printf ("   %s %d %s\n", rasl_code (rasl_ins), strlen (r -> p.f),
-	    r -> p.f);
+      r -> p.f);
     break;
 
     /* these instructions take 1 character argument. */
   case SYM: case SYMR: case NS: case LENS:
     printf ("   %s %c\n", rasl_code (rasl_ins), r -> p.c);
     break;
-    
+
     /* these instructions take no arguments. */
   case CL: case EMP: case VSYM: case VSYMR: case BL: case BLR:
   case BR: case LEN: case TERM: case TERMR: case PS: case PSR:
@@ -405,14 +405,14 @@ int print_var_table (unsigned char * bits) {
   printf ("Table of variables: %d\n", table_len);
   for (i = 0; i < table_len; i ++) {
     printf ("%2d: index = %2d offset = %2d checked = %1d\n",
-	    i, table [i].index, table [i].te_offset, is_bit_checked (bits, i));
+      i, table [i].index, table [i].te_offset, is_bit_checked (bits, i));
   }
   printf ("\n");
   return 0;
 }
 
 int prftab (struct functab * table) {
-  for (; table != NULL; table = table -> next) 
+  for (; table != NULL; table = table -> next)
     printf ("%s %ld\n", table -> name, table -> offset);
   printf ("\n");
   return 0;
@@ -427,8 +427,8 @@ int print_holes (struct HOLES * holes, struct element * e) {
   while (h != NULL) {
     i ++;
     printf ("%d  [%2d, %2d] - %1d, %1d\n", i, h -> left, h -> right,
-	    no_lengthening (e + (h -> left)),
-	    no_lengthening (e + (h -> right)));
+      no_lengthening (e + (h -> left)),
+      no_lengthening (e + (h -> right)));
     h = h -> next;
   }
   printf ("\n");

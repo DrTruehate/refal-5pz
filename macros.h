@@ -45,8 +45,8 @@ static
       int
 EPAR (LINK * q) {
   return (LINK_MLSTRUCTB(q)
-	  && (NEXT(q)->ptype == LINK_TYPE_CHAR)
-	  && (META_EVAR == NEXT(q)->pair.c));
+    && (NEXT(q)->ptype == LINK_TYPE_CHAR)
+    && (META_EVAR == NEXT(q)->pair.c));
 }
 
 static
@@ -56,8 +56,8 @@ static
       int
 TPAR (LINK * q) {
   return (LINK_MLSTRUCTB(q) &&
-	  (NEXT(q)->ptype == LINK_TYPE_CHAR) &&
-	  (META_TVAR == NEXT(q)->pair.c));
+    (NEXT(q)->ptype == LINK_TYPE_CHAR) &&
+    (META_TVAR == NEXT(q)->pair.c));
 }
 
 static
@@ -67,8 +67,8 @@ static
       int
 SPAR (LINK * q) {
   return (LINK_MLSTRUCTB(q) &&
-	  (NEXT(q)->ptype == LINK_TYPE_CHAR) &&
-	  (META_SVAR == NEXT(q)->pair.c));
+    (NEXT(q)->ptype == LINK_TYPE_CHAR) &&
+    (META_SVAR == NEXT(q)->pair.c));
 }
 
 static
@@ -78,83 +78,83 @@ static
       int
 UNKNOWN_PAR (LINK * q) {
   return (LINK_MLSTRUCTB(q) &&
-	  (NEXT(q)->ptype == LINK_TYPE_MLSTRUCTB));
+    (NEXT(q)->ptype == LINK_TYPE_MLSTRUCTB));
 }
 
-	/*	code 2: ACT1.	*/
+  /*  code 2: ACT1. */
 # define act1(x) ri_act1(x)
 
-	/*	code 3: BL.	*/
+  /*  code 3: BL. */
 # define bl { lfm->pair.b = pa; pa=lfm; ns1;}
 
-	/*	code 4: BLR.	*/
+  /*  code 4: BLR.  */
 # define blr ri_blr()
 
-	/*	code 5: BR.	*/
+  /*  code 5: BR. */
 # define br  {nextb = pa->pair.b; con (pa,lfm); pa=nextb; ns1;}
 
-	/*	code 6: CL.	*/
+  /*  code 6: CL. */
 # define cl ri_cl()
 
-	/*	code 7: SYM.	*/
-# define sym(arg)   { movb1;		\
-		if (LINK_VAR(b1) || EPAR(b1) || TPAR (b1) || SPAR (b1)) freeze 	\
-		if (!LINK_CHAR(b1) || (b1->pair.c != arg)) rimp; \
-		tbel(nel++) = b1;}
+  /*  code 7: SYM.  */
+# define sym(arg)   { movb1;    \
+    if (LINK_VAR(b1) || EPAR(b1) || TPAR (b1) || SPAR (b1)) freeze  \
+    if (!LINK_CHAR(b1) || (b1->pair.c != arg)) rimp; \
+    tbel(nel++) = b1;}
 
-	/*	code 8: SYMR.	*/
-# define symr(arg)  { movb2;		\
-		if (LINK_VAR(b2) || EPAR(b2) || TPAR (b2) || SPAR (b2)) freeze	\
-		if(! LINK_CHAR(b2) || (b2->pair.c != arg)) rimp; \
-		tbel(nel++) = b2;}
+  /*  code 8: SYMR. */
+# define symr(arg)  { movb2;    \
+    if (LINK_VAR(b2) || EPAR(b2) || TPAR (b2) || SPAR (b2)) freeze  \
+    if(! LINK_CHAR(b2) || (b2->pair.c != arg)) rimp; \
+    tbel(nel++) = b2;}
 
-	/*	code 10: EMP.	*/
+  /*  code 10: EMP. */
 # define emp  if (b1->foll != b2) { \
-		for (b1 = b1 -> foll; LINK_EVAR(b1) || EPAR (b1);b1 = b1->foll) {\
-		  if (b1->foll == b2) freeze;\
+    for (b1 = b1 -> foll; LINK_EVAR(b1) || EPAR (b1);b1 = b1->foll) {\
+      if (b1->foll == b2) freeze;\
                 } \
-		rimp;\
+    rimp;\
               }
 
-	/*	code 11: EST.	*/
+  /*  code 11: EST. */
 # define est  ri_est()
 
-	/*	code 13: MULE.	*/
+  /*  code 13: MULE.  */
 # define mule(arg) ri_mule(arg)
 
-	/* code 14: MULS. */
+  /* code 14: MULS. */
 # define muls(n) \
-{lfm->ptype = tbel(n)->ptype;	lfm->pair = tbel(n)->pair; ns1;}
+{lfm->ptype = tbel(n)->ptype; lfm->pair = tbel(n)->pair; ns1;}
 
-	/* code 16: PLEN. */
+  /* code 16: PLEN. */
 # define plen {pushst(b1,b2,nel,p); sp++; \
-	tbel(nel) = NULL; tbel(++nel) = b1;	nel++; }
+  tbel(nel) = NULL; tbel(++nel) = b1; nel++; }
 
-	/* code 17: PLENS. */
+  /* code 17: PLENS. */
 # define plens {pushst(b1,b2,nel,p); tbel(nel) = NULL; tbel(nel+2) = b1;}
 
-	/* code 18: PLENP. */
+  /* code 18: PLENP. */
 # define plenp {pushst(b1,b2,nel,p); tbel(nel) = NULL; tbel(nel+3) = b1;}
 
 
-	/*	code 19: PS.	*/
+  /*  code 19: PS.  */
 # define ps  { movb1; \
-	if (LINK_EVAR (b1) || EPAR (b1)) freeze \
-	if (!LINK_STRUCTB (b1)) rimp	\
-	else {b2 = b1->pair.b;	\
-		tbel(nel++) = b1;	\
-		tbel(nel++) = b2;}} 
+  if (LINK_EVAR (b1) || EPAR (b1)) freeze \
+  if (!LINK_STRUCTB (b1)) rimp  \
+  else {b2 = b1->pair.b;  \
+    tbel(nel++) = b1; \
+    tbel(nel++) = b2;}}
 
-	/*	code 20: PSR.	*/
-# define psr {	movb2;	\
-	if (LINK_EVAR (b2) || EPAR (b2)) freeze \
-	if (!LINK_STRUCTB(b2)) rimp \
-	else {tbel(nel++) = b2->pair.b; \
-	tbel(nel++) = b2; \
-	b2 = b2->pair.b;}}
+  /*  code 20: PSR. */
+# define psr {  movb2;  \
+  if (LINK_EVAR (b2) || EPAR (b2)) freeze \
+  if (!LINK_STRUCTB(b2)) rimp \
+  else {tbel(nel++) = b2->pair.b; \
+  tbel(nel++) = b2; \
+  b2 = b2->pair.b;}}
 
 
-/*	code 23: OEXP.	*/
+/*  code 23: OEXP.  */
 # define oexp(q) {if (ri_oexp(q) == 1) goto restart; }
 
 /* code 24: OEXPR. */
@@ -168,85 +168,85 @@ UNKNOWN_PAR (LINK * q) {
 
 /* code 27: TERM. */
 # define term { \
-	movb1; \
-	if (LINK_EVAR(b1) || EPAR (b1)) freeze \
-	else { \
-		tbel(nel) = b1; \
-		if(LINK_STRUCTB(b1)) b1 = b1->pair.b; \
-		tbel(++nel) = b1; \
-		nel++; \
-	} \
+  movb1; \
+  if (LINK_EVAR(b1) || EPAR (b1)) freeze \
+  else { \
+    tbel(nel) = b1; \
+    if(LINK_STRUCTB(b1)) b1 = b1->pair.b; \
+    tbel(++nel) = b1; \
+    nel++; \
+  } \
 }
 
 /* code 28: TERMR. */
 # define termr { \
-	movb2; \
-	if (LINK_EVAR(b2) || EPAR (b2)) freeze \
-	else { \
-		tbel(nel+1) = b2; \
-		if(LINK_STRUCTB(b2)) b2 = b2->pair.b; \
-		tbel(nel++) = b2; \
-		nel++; \
-	} \
+  movb2; \
+  if (LINK_EVAR(b2) || EPAR (b2)) freeze \
+  else { \
+    tbel(nel+1) = b2; \
+    if(LINK_STRUCTB(b2)) b2 = b2->pair.b; \
+    tbel(nel++) = b2; \
+    nel++; \
+  } \
 }
 
-/*	code 29: RDY.	*/
+/*  code 29: RDY. */
 # define rdy(index)  {b=tbel(index);}
 
-	/*	code 34: SETB.	*/
-# define setb(n,m)  { b1 = tbel(n);		\
-		b2 = tbel(m); if (tbel(m) == NULL) b2 = tbel(m+1)->foll;}
+  /*  code 34: SETB.  */
+# define setb(n,m)  { b1 = tbel(n);   \
+    b2 = tbel(m); if (tbel(m) == NULL) b2 = tbel(m+1)->foll;}
 
-	/* code 35: LEN. */
+  /* code 35: LEN. */
 # define len {if (tbel(nel) == NULL) tbel(nel) = b1->foll; \
-		b1 = tbel(nel+1);	movb1; \
-		if (LINK_EVAR (b1) || EPAR (b1)) freeze	\
-		else {if (LINK_STRUCTB(b1)) b1 = b1->pair.b; \
-		++sp; tbel(++nel) = b1; nel++; }}
+    b1 = tbel(nel+1); movb1; \
+    if (LINK_EVAR (b1) || EPAR (b1)) freeze \
+    else {if (LINK_STRUCTB(b1)) b1 = b1->pair.b; \
+    ++sp; tbel(++nel) = b1; nel++; }}
 
-	/* code 36: LENS. */
+  /* code 36: LENS. */
 # define lens(c) { if (ri_lens(c) == 1) goto restart; }
 
-	/* code 37: LENP. */
+  /* code 37: LENP. */
 # define lenp { if (ri_lenp() == 1) goto restart; }
 
-	/* code 38: LENOS. deleted (10/11/1987). */
+  /* code 38: LENOS. deleted (10/11/1987). */
 
-	/* code 39: SYMS. */
+  /* code 39: SYMS. */
 # define syms(n) {while(n-- > 0 ) {movb1; \
-	if (LINK_VAR(b1) || EPAR (b1) || TPAR (b1) || SPAR (b1)) freeze \
-	else if (!LINK_CHAR(b1) || (b1->pair.c != *p++)) rimp \
-	else tbel(nel++) = b1;}}
+  if (LINK_VAR(b1) || EPAR (b1) || TPAR (b1) || SPAR (b1)) freeze \
+  else if (!LINK_CHAR(b1) || (b1->pair.c != *p++)) rimp \
+  else tbel(nel++) = b1;}}
 
-	/* code 40: SYMSR. */
+  /* code 40: SYMSR. */
 # define symsr(n) {while(n-- > 0) {movb2; \
-	if (LINK_VAR(b2) || EPAR (b2) || TPAR (b2) || SPAR (b2)) freeze \
-	else if (!LINK_CHAR(b2) || (b2->pair.c != *p++)) rimp \
-	else tbel(nel++) = b2;}}
+  if (LINK_VAR(b2) || EPAR (b2) || TPAR (b2) || SPAR (b2)) freeze \
+  else if (!LINK_CHAR(b2) || (b2->pair.c != *p++)) rimp \
+  else tbel(nel++) = b2;}}
 
-	/* code 41: TEXT. */
+  /* code 41: TEXT. */
 # define text(n) {rend = b->foll; \
-	while (n-- > 0) {lfm->ptype = LINK_TYPE_CHAR; lfm->pair.c = *p++; \
-		weld (b,lfm); b = lfm; all; }; weld(b,rend); } 
+  while (n-- > 0) {lfm->ptype = LINK_TYPE_CHAR; lfm->pair.c = *p++; \
+    weld (b,lfm); b = lfm; all; }; weld(b,rend); }
 
-	/*	code 43: NS.	*/
+  /*  code 43: NS.  */
 # define ns(x) {lfm->pair.c = x; lfm->ptype = LINK_TYPE_CHAR; ns1;}
 # define ns1 ri_ns1()
 
-	/*	code 45: TPLE.	*/
+  /*  code 45: TPLE.  */
 # define tple(arg) ri_tple(arg)
 
-	/*	code 46: TPLS.	*/
+  /*  code 46: TPLS.  */
 # define tpls(arg) ri_tpls(arg)
 
-	/* code 47: TRAN. */
+  /* code 47: TRAN. */
 # define tran(arg) {pushst(b1,b2,nel,arg); sp++;}
 
-	/*	code 48: VSYM.	*/
+  /*  code 48: VSYM.  */
 /*# define vsym  {movb1; if (LINK_EVAR(b1)) freeze \ */
-/*	else if (!LINK_SYMBOL(b1)) rimp else tbel(nel++) = b1;} */
+/*  else if (!LINK_SYMBOL(b1)) rimp else tbel(nel++) = b1;} */
 
-	/*	code 48: VSYM.	*/
+  /*  code 48: VSYM.  */
 # define vsym  \
 {\
   movb1; \
@@ -256,51 +256,51 @@ UNKNOWN_PAR (LINK * q) {
   else rimp;\
 }
 
-	/*	code 49: VSYMR.	*/
+  /*  code 49: VSYMR. */
 # define vsymr {movb2; if (LINK_EVAR(b2) || EPAR (b2)) freeze \
-	else if (!LINK_SYMBOL(b2)) rimp else tbel(nel++) = b2;}
+  else if (!LINK_SYMBOL(b2)) rimp else tbel(nel++) = b2;}
 
-	/*	code 50: OUTEST.	*/
+  /*  code 50: OUTEST.  */
 # define out(n) ri_out(n)
 
-	/*	code 55: CSYM.	*/
+  /*  code 55: CSYM.  */
 # define csym(arg)  { movb1; if (LINK_VAR(b1) || EPAR (b1) || TPAR (b1) || SPAR (b1)) freeze \
-		else if (!LINK_COMPSYM(b1) || (b1->pair.f != arg)) rimp;\
-		tbel(nel++) = b1;}
+    else if (!LINK_COMPSYM(b1) || (b1->pair.f != arg)) rimp;\
+    tbel(nel++) = b1;}
 
-	/*	code 56: CSYMR.	*/
+  /*  code 56: CSYMR. */
 # define csymr(arg) { movb2; if (LINK_VAR(b2) || EPAR (b2) || TPAR (b2) || SPAR (b2)) freeze \
-		else if (!LINK_COMPSYM(b2) || (b2->pair.f != arg)) rimp; \
-		tbel(nel++) = b2;}
+    else if (!LINK_COMPSYM(b2) || (b2->pair.f != arg)) rimp; \
+    tbel(nel++) = b2;}
 
-	/*	code 57: NSYM.	*/
+  /*  code 57: NSYM.  */
 # define nsym(arg) { \
-	movb1; \
-	if (LINK_VAR(b1) || EPAR (b1) || TPAR (b1) || SPAR (b1)) { \
-		freeze; \
-	} \
-	if(!LINK_NUMBER(b1) || (b1->pair.n != (unsigned long) arg)) { \
-		rimp; \
-	} \
-	tbel(nel++) = b1; \
+  movb1; \
+  if (LINK_VAR(b1) || EPAR (b1) || TPAR (b1) || SPAR (b1)) { \
+    freeze; \
+  } \
+  if(!LINK_NUMBER(b1) || (b1->pair.n != (unsigned long) arg)) { \
+    rimp; \
+  } \
+  tbel(nel++) = b1; \
 }
 
-	/*	code 58: NSYMR.	*/
+  /*  code 58: NSYMR. */
 # define nsymr(arg) { \
-	movb2; \
-	if (LINK_VAR(b2) || EPAR (b2) || TPAR (b2) || SPAR (b2)) { \
-		freeze; \
-	} \
-	if(!LINK_NUMBER(b2) || (b2->pair.n != (unsigned long)arg)) { \
-		rimp; \
-	} \
-	tbel(nel++) = b2; \
+  movb2; \
+  if (LINK_VAR(b2) || EPAR (b2) || TPAR (b2) || SPAR (b2)) { \
+    freeze; \
+  } \
+  if(!LINK_NUMBER(b2) || (b2->pair.n != (unsigned long)arg)) { \
+    rimp; \
+  } \
+  tbel(nel++) = b2; \
 }
 
-	/*	code 59: NCS.	*/
+  /*  code 59: NCS. */
 # define ncs(x) {lfm->pair.f = x; lfm->ptype=3; ns1;}
 
-	/*	code 60: NNS.	*/
+  /*  code 60: NNS. */
 # define nns(x) {lfm->pair.n = x; lfm->ptype=4; ns1;}
 
   /*   -------------------------------------------------   */
@@ -314,9 +314,9 @@ UNKNOWN_PAR (LINK * q) {
 # define movb2 {if ((b2 = b2->prec) == b1) rimp;}
 
 # define con(a1,a2) { \
-		a1->ptype = LINK_TYPE_LSTRUCTB; \
-		a2->ptype = LINK_TYPE_RSTRUCTB; \
-		PAIR(a1) = a2;	PAIR(a2) = a1;}
+    a1->ptype = LINK_TYPE_LSTRUCTB; \
+    a2->ptype = LINK_TYPE_RSTRUCTB; \
+    PAIR(a1) = a2;  PAIR(a2) = a1;}
 
 # define weld(a1,a2) {NEXT(a1) = a2; PREV(a2) = a1; }
 
@@ -324,21 +324,21 @@ UNKNOWN_PAR (LINK * q) {
 
 # define freeze  {ri_frz(1); goto restart;}
 
-# define pushst(g1,g2,ne,ar)     	\
-        { st[sp].b1 = (LINK *) g1;	\
-          st[sp].b2 = (LINK *) g2;	\
-          st[sp].nel = (long) ne;	\
+# define pushst(g1,g2,ne,ar)      \
+        { st[sp].b1 = (LINK *) g1;  \
+          st[sp].b2 = (LINK *) g2;  \
+          st[sp].nel = (long) ne; \
           st[sp].ra = (char *) ar;}
 
-# define popst(g1,g2,ne,ar)	\
-    { g1 = st[sp].b1;			\
-      g2 = st[sp].b2;			\
-      ne = st[sp].nel;			\
+# define popst(g1,g2,ne,ar) \
+    { g1 = st[sp].b1;     \
+      g2 = st[sp].b2;     \
+      ne = st[sp].nel;      \
       ar = st[sp].ra;}
 
 # define check_freeze if (exists_freeze()) {ri_frz(1); return 0; }
 # define check_frz_args(frz_code) if (contains_vars (tbel (1), tbel (2))) \
-	{ri_frz(frz_code); return 0;}
+  {ri_frz(frz_code); return 0;}
 
 # define YES 1
 # define NO  0
