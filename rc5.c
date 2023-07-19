@@ -163,12 +163,14 @@ rc_gchar (void) {
     #include <dos.h> /* This include is strange for UNIX */
   #endif
 
+#define FP_SEG(fp) (*((unsigned short *)&(fp) + 1))
+#define FP_OFF(fp) (*((unsigned short *)&(fp)))
 int print_expr (struct element * e) {
   printf ("Expression: %04x:%04x\n", FP_SEG(e), FP_OFF(e));
-  while (e -> type != NULL) {
+  while (e/* -> type*/ != NULL) {
     switch (e -> type) {
-    case NULL:
-      return 0;
+//    case NULL:
+//      return 0;
     case E_VAR:
       printf (" e.%d", e -> body.i);
       break;
@@ -316,21 +318,20 @@ int print_translation (struct rasl_instruction * r) {
 
   while (r != NULL) {
     print_rasl_inst (r);
-    if (r -> code == NULL) break;
+//    if (r -> code == NULL) break;
     r = r -> next;
   }
+  printf("end of translation\n");
   return 0;
 }
 
 int print_rasl_inst (struct rasl_instruction *r) {
-  int rasl_ins;
+  int rasl_ins = r -> code;
 
-  rasl_ins = r -> code;
   switch (rasl_ins) {
-  case NULL:
-    printf ("end of translation\n");
-    break;
-
+//  case NULL:
+//    printf ("end of translation\n");
+//    break;
   case B:
     printf ("Special Mark: B\n");
     break;
@@ -375,7 +376,7 @@ int print_rasl_inst (struct rasl_instruction *r) {
 
     /* these instructions take 2 arguments: length and pointer. */
   case SYMS: case SYMSR: case TEXT:
-    printf ("   %s %d %s\n", rasl_code (rasl_ins), strlen (r -> p.f),
+    printf ("   %s %lu %s\n", rasl_code (rasl_ins), strlen (r -> p.f),
       r -> p.f);
     break;
 
