@@ -27,21 +27,7 @@ int ri_lens (char);
 int ri_lenp (void);
 
 /* load.c -- deals with the initial loading of the .RSL file into core. */
-char *ri_load (void);
-# ifdef LOAD_INCLUDED
-char ** ri_mkfunlist (struct module_descriptor *, char *, char **);
-int ri_mkmodlist (struct module_descriptor *);
-int ri_mkentlist (struct module_descriptor *);
-struct module_descriptor *ri_freemod (struct module_descriptor *);
-struct module_descriptor *ri_readhdr (FILE *, struct module_descriptor *);
-# endif
-int ri_lerror (int);
-# ifdef LOAD_INCLUDED
-int ri_loadcode (struct module_descriptor *, struct module_descriptor *);
-# endif
-int ri_init (void);
-int ri_memory (void);
-int ri_inquire (char *, char *, int);
+int ri_init(void);
 
 /* refaux.c -- auxiliary: memory allocation, stop, error, comp symbols etc. */
 struct link *ri_getmem (void);
@@ -54,6 +40,7 @@ char *ri_cs_exist (int, char *);
 int ri_cs_ins (int, char *);
 int ri_hash (char *);
 int ri_print_error_code(FILE *, int);
+int ri_memory (void);
 int ri_common_stack (void);
 int ri_init_stop(void);
 void ri_options(int, char **, char);

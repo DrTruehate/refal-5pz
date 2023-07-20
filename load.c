@@ -1,4 +1,3 @@
-
 # include "version.h"
 # include "rasl.h"
 # include "decl.h"
@@ -28,7 +27,14 @@ extern unsigned long ul_limitSizeCode;
   FILE *fDebug;
 # endif
 
-static FILE * search_file_path (char *, char *);
+static FILE* search_file_path(char *, char *);
+MODULE* ri_readhdr(FILE *, MODULE *);
+MODULE* ri_freemod(MODULE *);
+int ri_mkmodlist(MODULE *);
+int ri_mkentlist(MODULE *);
+int ri_loadcode(MODULE *, MODULE *);
+int ri_lerror(int);
+int ri_inquire(char *, char *, int);
 
 struct local_path {
   char * cp_path;
