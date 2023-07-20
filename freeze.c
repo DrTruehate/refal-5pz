@@ -53,7 +53,6 @@ int exists_freeze (void) {
 # endif
 }
 
-
 /* metacode_make_var() makes a variable out of index, level and elevation */
 /*static unsigned long metacode_make_var(unsigned long, unsigned long, unsigned long);*/
 static unsigned long metacode_make_var(unsigned long index, unsigned long level, unsigned long elev) {
@@ -173,6 +172,16 @@ int rf_dn (void) {
   return 0;
 }
 
+
+/* metacode definition. */
+#define META_ACTIVE          '!'
+#define META_BRACKET         '*'
+#define META_FIRST_BRACKET   '-'
+#define META_SVAR            's'
+#define META_EVAR            'e'
+#define META_TVAR            't'
+#define META_QUOTE           'm'
+#define META_QUOTE2          'q'
 
 int ri_dn (LINK *q1, LINK *q2) {
   LINK *r, *rend, *j;

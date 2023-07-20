@@ -53,7 +53,6 @@
 		<Unit filename="dimpl.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="dmacro.h" />
 		<Unit filename="dtrace.c">
 			<Option compilerVar="CC" />
 		</Unit>
