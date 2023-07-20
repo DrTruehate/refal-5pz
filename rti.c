@@ -3,7 +3,7 @@
 # include "decl.h"
 # include "ddecl.h"
 # include "macros.h"
-# include "dmacro.h"
+//# include "dmacro.h"
 # include "ifunc.h"
 # include "tfunc.h"
 
@@ -383,6 +383,14 @@ restart:
   return 0;
 }
 
+#define chact(arg)  { if (arg != actfun) rimp;}
+#define gt(m)       { if(nst < m) rimp;}
+#define lt(m)       { if(nst > m) rimp;}
+#define eqs(m)      { if(nst != m) rimp;}
+// in EBR sp is decreased to delete the record in st corresponding
+//  to that break point.  Aug 10 1985. DiMitri Turchin.
+#define ebr(m)      { sp --; curr_point = m; rd_trace(); nobreak; }
+#define nobreak     {nel = 3L; b1 = tbel(1); b2 = tbel(2); p = actfun;}
 
 /* ri_default () deals with Special RASL instruction for the Tracer only. May 9 1988. D.T. */
 int ri_default (int ins, int * error) {

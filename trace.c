@@ -17,7 +17,7 @@
 # include "cdecl.h"
 # include "ddecl.h"
 # include "macros.h"
-# include "dmacro.h"
+//# include "dmacro.h"
 # include "fileio.h"
 # include "ifunc.h"
 # include "tfunc.h"
