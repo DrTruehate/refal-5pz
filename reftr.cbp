@@ -69,7 +69,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="ifunc.h" />
-		<Unit filename="ldecl.h" />
 		<Unit filename="lex.c">
 			<Option compilerVar="CC" />
 		</Unit>
