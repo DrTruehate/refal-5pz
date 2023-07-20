@@ -12,7 +12,7 @@
 
 
 // suppress debugging.
-#define MDEBUG  1
+#define MDEBUG  0
 
 int main(int argc, char *argv [])
 {
