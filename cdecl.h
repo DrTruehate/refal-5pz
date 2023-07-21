@@ -276,4 +276,3 @@ EXTERNAL FILE *fdtmpw;  /* .TMP write file */
 EXTERNAL FILE *fdtmpr;  /* .TMP read file */
 
 
-#include "junk.h"
