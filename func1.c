@@ -8,7 +8,7 @@
 # include "fileio.h"
 # include "ifunc.h"
 
-#include "version.h"
+//#include "version.h"
 
 #ifdef FOR_OS_WINDOWSNT
 /* For _stat () */

@@ -1,3 +1,2 @@
-# define VERSION "Refal-5 %s. Version PZ %s\n"
-
-extern char _refal_build_version [];
+#define VERSION(obj)  "Refal-5 " #obj ". Version PZ " __DATE__ "\n"
+#define COPYRIGHT     "Copyright: Refal Systems Inc.\n"
