@@ -27,10 +27,6 @@
 /* define macros. */
 #define copyst(x) { strcpy(x, str); }
 
-#define pushstk vstack[vsp++] = nlv
-#define clrstk  { vsp = 0; nlv = 0; }
-#define popstk  nlv = vstack[--vsp]
-
 #define write_byte(BYTENUM) fputc( (char)(BYTENUM), fdtmpw )
 #define write_bytes(PTR, NUMBYTES) \
   fwrite( (void *)(PTR), 1, (NUMBYTES), fdtmpw )

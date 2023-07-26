@@ -10,21 +10,7 @@ int rc_serror(int, char *);
 int rc_swarn(int);
 
 /* parser.c -- top down recursive descent parser */
-int rc_skip (int);
-char *rc_fname (void);
-struct node *rc_r_first (void);
-struct node *rc_r_list (void);
-struct node *rc_l_first (void);
-struct node *rc_l_list (void);
-struct node *rc_r_tail (void);
-struct node *rc_sentence (void);
-struct node *rc_sents (void);
-int rc_1ofsent (int);
-char *rc_idlist (void);
-struct node *rc_fdef (void);
-struct node *rc_parser (void);
-struct element *rc_r_side (void);
-struct element *rc_l_side (void);
+struct node* rc_parser(void);
 
 /* pass2.c -- second pass resolving references. */
 int rc_initcom (int, char * *);
