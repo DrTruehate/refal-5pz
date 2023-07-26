@@ -146,8 +146,8 @@ void print_expr(struct element *e)
       case DIGIT: printf(" %ld",  e->body.n); break;
       case LPAR:  printf(" ("); break;
       case RPAR:  printf(")");  break;
-      case ACT_LEFT:  printf(" <%s", e->body.f);break;
-      case ACT_RIGHT: printf(" %s>", e->body.f);break;
+      case ACT_LEFT:  printf(" <%s", e->body.f); break;
+      case ACT_RIGHT: printf(" %s>", e->body.f); break;
       case STRING:  printf(" \"%s\"", e->body.f); break;
       default:  printf(" (TYPE=%d)", e->type);
     } // end of switch
