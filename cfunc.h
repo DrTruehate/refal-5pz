@@ -5,14 +5,9 @@ int ri_inquire(char *, char *, int);
 int rc_gchar(void);
 
 /* lex.c# -- lexical scan functions. */
-int rc_gettoken (void);
-int rc_getsym (void);
-int rc_getind (void);
-int rc_getid (int);
-int rc_serror (int ,char *);
-int rc_swarn (int);
-int rc_getstr (int);
-int rc_getnumb (int);
+int rc_gettoken(void);
+int rc_serror(int, char *);
+int rc_swarn(int);
 
 /* parser.c -- top down recursive descent parser */
 int rc_skip (int);
@@ -40,9 +35,6 @@ int rc_sftable (struct functab *);
 int rc_sltable (struct functab *);
 int rc_pass2 (void);
 int rc_end (void);
-
-/* pcbi.c -- list of standard functions. */
-long rc_binumber (char *);
 
 /* rc.c -- Refal compiler: general and right side translation. */
 int refcom (struct node *);
@@ -109,49 +101,3 @@ int free_tree (struct node *);
 char *rc_deflabel(char *, struct functab *);
 long rc_getcsn (char *);
 int rc_vyvod (struct rasl_instruction * *, int);
-
-#ifdef FOR_OS_LINUX
-# ifndef FOR_OS_OS2
-/* This code is inserted by Shura. 22.01.98 */
-/* strupr is in MS-DOS, but none in UNIX. So, the code depent from
- * version of UNIX. Here is implemented only Latin charcters.
- */
-static inline void
-strupr (char * cp_str) {
-  int i;
-
-  for (i = 0; '\0' != cp_str [i]; i ++) {
-    switch (cp_str [i]) {
-    case 'a': cp_str [i] = 'A'; break;
-    case 'b': cp_str [i] = 'B'; break;
-    case 'c': cp_str [i] = 'C'; break;
-    case 'd': cp_str [i] = 'D'; break;
-    case 'e': cp_str [i] = 'E'; break;
-    case 'f': cp_str [i] = 'F'; break;
-    case 'g': cp_str [i] = 'G'; break;
-    case 'h': cp_str [i] = 'H'; break;
-    case 'i': cp_str [i] = 'I'; break;
-    case 'j': cp_str [i] = 'J'; break;
-    case 'k': cp_str [i] = 'K'; break;
-    case 'l': cp_str [i] = 'L'; break;
-    case 'm': cp_str [i] = 'M'; break;
-    case 'n': cp_str [i] = 'N'; break;
-    case 'o': cp_str [i] = 'O'; break;
-    case 'p': cp_str [i] = 'P'; break;
-    case 'q': cp_str [i] = 'Q'; break;
-    case 'r': cp_str [i] = 'R'; break;
-    case 's': cp_str [i] = 'S'; break;
-    case 't': cp_str [i] = 'T'; break;
-    case 'v': cp_str [i] = 'V'; break;
-    case 'u': cp_str [i] = 'U'; break;
-    case 'w': cp_str [i] = 'W'; break;
-    case 'x': cp_str [i] = 'X'; break;
-    case 'y': cp_str [i] = 'Y'; break;
-    case 'z': cp_str [i] = 'Z'; break;
-    default:;
-    }
-  }
-}
-# endif
-#endif
-
